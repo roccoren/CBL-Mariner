@@ -1,0 +1,16 @@
+name: az-linux-build
+on:
+  push:
+    branches: [ 2.0 ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Change Director
+    - run: cd toolkit
+    - name: Build image
+      run: sudo make image REBUILD_TOOLS=y REBUILD_PACKAGES=n CONFIG_FILE=./imageconfigs/core-efi.json
